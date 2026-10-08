@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pinterest Video Downloader – Download Videos | NEXTVIDEO</title>
+<meta content="Pinterest Video Downloader by NEXTVIDEO. Process supported public Pinterest videos online on mobile or PC. Paste a link and start processing." name="description"/>
+<meta content="index,follow" name="robots"/>
+<link href="https://nextvideo.in/pinterest-video-downloader.html" rel="canonical"/>
+<meta content="Pinterest Video Downloader – NEXTVIDEO" property="og:title"/>
+<meta content="Process supported public X (Pinterest) videos online with NEXTVIDEO." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://nextvideo.in/pinterest-video-downloader.html" property="og:url"/>
+<style>
+:root{
+  --ink:#101a36;--muted:#5f6c86;--blue:#2563eb;--purple:#7546f2;
+  --line:#e7ebf4;--soft:#f7f8fd;--hero1:#edf5ff;--hero2:#f8f1ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.45}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,92%);margin:auto}
+
+/* SHARED HOMEPAGE HEADER */
+.site-header{height:70px;background:#fff;border-bottom:1px solid #eef1f6;display:flex;align-items:center;justify-content:space-between;padding:0 4%;position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:10px;min-width:210px}
+.brand-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#2f63ea,#7b46f1);color:#fff;font-weight:900;font-size:16px;box-shadow:0 7px 18px rgba(64,78,210,.2)}
+.brand-copy strong{display:block;font-size:21px;letter-spacing:-.5px}
+.brand-copy strong span{color:#6748ef}
+.brand-copy small{display:block;font-size:9px;color:#7f8899;line-height:1.1}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:14px;color:#4c5871;padding:24px 0 21px;border-bottom:3px solid transparent}
+.nav a:hover,.nav a.active{color:#141b34;border-bottom-color:#4b69ff}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 17px;border:1px solid #e4e8f0;font-size:13px;font-weight:700;background:#fff}
+.btn.primary{background:linear-gradient(135deg,#5b47e9,#7d45ef);color:#fff;border:none;padding-inline:20px}
+@media(max-width:1000px){.nav{display:none}}
+@media(max-width:650px){.site-header{padding:0 3%}.brand{min-width:0}.brand-copy strong{font-size:19px}.brand-copy small{font-size:8px}}
+
+.hero{background:radial-gradient(circle at 15% 28%,rgba(62,125,255,.12),transparent 30%),radial-gradient(circle at 85% 25%,rgba(146,76,255,.12),transparent 31%),linear-gradient(135deg,var(--hero1),var(--hero2));padding:56px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center}
+.kicker{font-size:12px;color:#5a46ef;letter-spacing:1.5px;font-weight:800;margin-bottom:14px}
+.hero h1{font-size:52px;line-height:1.05;letter-spacing:-2px;max-width:650px;margin-bottom:18px}
+.hero h1 span{background:linear-gradient(90deg,#2169ea,#7d48ef);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:17px;line-height:1.65;color:var(--muted);max-width:690px;margin-bottom:25px}
+.dl-form{display:flex;align-items:stretch;max-width:700px;background:#fff;border:1px solid #dae2f1;border-radius:14px;padding:6px;box-shadow:0 10px 30px rgba(45,65,105,.10)}
+.dl-form input{flex:1;border:0;outline:none;padding:15px 15px;font-size:14px;color:#26334d;min-width:0}
+.dl-form input::placeholder{color:#7f8998}
+.dl-form button{border:0;border-radius:10px;background:linear-gradient(135deg,#5546e8,#7d43ec);color:#fff;font-size:14px;font-weight:800;padding:0 21px;cursor:pointer}
+.dl-form button:disabled{opacity:.65;cursor:not-allowed}
+.note{margin-top:11px;font-size:11px;color:#68758d}.note b{color:#485369}
+.result{max-width:700px;margin-top:10px;background:#fff;border:1px solid #dae2f1;border-radius:10px;padding:11px 13px;font-size:12px;color:#5b6780;display:none}
+.hero-art{position:relative;min-height:350px;display:flex;align-items:center;justify-content:center}
+.phone{width:246px;height:355px;border:8px solid #111b33;border-radius:28px;background:linear-gradient(145deg,#dcecff,#eee7ff);transform:rotate(4deg);box-shadow:0 24px 50px rgba(46,58,98,.22);position:relative;z-index:2}
+.phone-notch{position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:78px;height:22px;background:#10192e;border-radius:0 0 14px 14px}
+.phone-screen{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding-top:10px}
+.circle-play{width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#5a49eb;font-size:24px;box-shadow:0 10px 23px rgba(25,41,72,.12)}
+.phone-screen strong{font-size:15px}.phone-sub{font-size:11px;color:#69758d;text-align:center}
+.circle-dl{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#2e6fed,#8143ef);color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 13px 30px rgba(70,76,213,.28)}
+.float-icon{position:absolute;z-index:3;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;box-shadow:0 9px 23px rgba(48,61,106,.10);font-weight:900}
+.float-inst{left:3%;top:22%;background:linear-gradient(135deg,#f9b049,#9c36ef);color:#fff}.float-fb{right:4%;top:21%;background:#2381ed;color:#fff}.float-tt{left:2%;bottom:24%;background:#050505;color:#fff}.float-x{right:2%;bottom:25%;background:#050505;color:#fff}.float-p{right:13%;bottom:2%;background:#ef1f34;color:#fff}.float-down{right:16%;top:55%;width:80px;height:80px;border-radius:50%;background:#fff;color:#6247ed;font-size:35px;box-shadow:0 14px 35px rgba(48,61,106,.15)}
+.section{padding:56px 0}.center{text-align:center}.section h2{font-size:30px;letter-spacing:-.7px;margin-bottom:5px}.sub{font-size:15px;color:#6d7890}
+.platform-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.platform{border:1px solid #e6eaf2;border-radius:16px;padding:20px 14px;background:#fff;text-align:center;transition:.2s;min-height:145px}.platform:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(43,58,98,.08)}
+.platform .picon{width:46px;height:46px;border-radius:12px;margin:0 auto 12px;display:grid;place-items:center;font-size:24px;font-weight:900}.p-inst{background:linear-gradient(135deg,#f7a94a,#ae2cec);color:#fff}.p-reel{background:linear-gradient(135deg,#f43f5e,#8b5cf6);color:#fff}.p-public{background:#e9efff;color:#4566e8}.p-mobile{background:#e7f8ef;color:#0e9f63}
+.platform h3{font-size:14px;line-height:1.25}.platform p{font-size:11px;color:#78849a;margin-top:5px}.arrow{display:block;color:#5a4cef;font-size:20px;margin-top:8px}
+.benefits{background:#f7f8fd;border-top:1px solid #eef0f6;border-bottom:1px solid #eef0f6}.benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.benefit{text-align:center;padding:9px 12px}.bicon{width:43px;height:43px;border-radius:12px;margin:0 auto 11px;display:grid;place-items:center;background:linear-gradient(145deg,#dfeaff,#ece5ff);font-size:21px;color:#4d50f0}.benefit h3{font-size:15px;margin-bottom:4px}.benefit p{font-size:12px;color:#758099}
+.stats{background:linear-gradient(90deg,#286af2,#4b4bed,#7a42ef);color:#fff;padding:25px 0}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}.stat{text-align:center;position:relative}.stat:not(:last-child)::after{content:"";position:absolute;right:0;top:12%;width:1px;height:76%;background:rgba(255,255,255,.27)}.stat strong{display:block;font-size:28px;line-height:1;margin-bottom:7px}.stat span{font-size:12px;color:#edf0ff}
+.content{max-width:930px;margin:auto}.content h2{font-size:24px;margin:0 0 12px}.content h3{font-size:17px;margin:24px 0 8px}.content p{font-size:14px;color:#67748c;line-height:1.75;margin-bottom:13px}.content ul{padding-left:18px;color:#67748c;font-size:14px;line-height:1.7}.content li{margin-bottom:5px}.legal{margin-top:22px;background:#f8f9ff;border:1px solid #eceef4;border-radius:12px;padding:15px;font-size:12px;color:#6f7b91}
+.how{background:#fafbff}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}.step{text-align:center;padding:10px 25px}.step-no{width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,#246cf0,#7444ef);color:#fff;display:grid;place-items:center;margin:0 auto 12px;font-weight:900}.step h3{font-size:16px;margin-bottom:6px}.step p{font-size:13px;color:#718097;max-width:250px;margin:auto}
+.faq-wrap{max-width:930px;margin:25px auto 0;background:#f8f9ff;border-radius:15px;padding:15px}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.faq{background:#fff;border:1px solid #eceef4;border-radius:10px;overflow:hidden}.faq summary{padding:15px 17px;cursor:pointer;font-size:13px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"⌄";color:#5a49ec}.faq p{font-size:12px;color:#6f7b91;padding:0 17px 15px}
+.cta{padding:56px 0}.cta-box{border-radius:18px;background:linear-gradient(135deg,#2e6fed,#7546f2);padding:38px 26px;text-align:center;color:#fff}.cta-box h2{font-size:28px;margin-bottom:8px}.cta-box p{font-size:14px;opacity:.92;max-width:680px;margin:0 auto 18px}.cta-btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:10px;background:#fff;color:#3853db;font-weight:800;font-size:13px}
+.footer{background:#0d162a;color:#fff;padding:38px 0 19px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.footer h4{font-size:13px;margin-bottom:11px}.footer a{display:block;font-size:12px;color:#aeb8ca;margin-bottom:7px}.footer a:hover{color:#fff}.footer-desc{font-size:12px;color:#aeb8ca;max-width:290px;margin-top:10px}.copyright{border-top:1px solid rgba(255,255,255,.08);padding-top:17px;margin-top:25px;text-align:center;color:#7d899f;font-size:11px}
+@media(max-width:1000px){.nav{display:none}.hero-grid{grid-template-columns:1fr}.hero-content{text-align:left}.hero-art{margin-top:5px}.platform-grid{grid-template-columns:repeat(2,1fr)}.benefit-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.site-header{padding:0 3%}.actions{min-width:0}.brand{min-width:0}.hero{padding:45px 0}.hero h1{font-size:38px}.hero p{font-size:15px}.dl-form{flex-direction:column}.dl-form button{padding:14px;margin-top:6px}.platform-grid,.benefit-grid,.steps,.faq-grid,.footer-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr;gap:15px}.stat:not(:last-child)::after{display:none}.float-icon{transform:scale(.88)}.phone{width:215px;height:325px}.float-down{right:9%;}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Pinterest Video Downloader",
+  "description":"Online tool for processing supported public Pinterest video URLs.",
+  "url":"https://nextvideo.in/pinterest-video-downloader.html",
+  "isPartOf":{"@type":"WebSite","name":"NEXTVIDEO","url":"https://nextvideo.in/"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://nextvideo.in/"},
+    {"@type":"ListItem","position":2,"name":"Pinterest Video Downloader","item":"https://nextvideo.in/pinterest-video-downloader.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How do I download an Pinterest video?","acceptedAnswer":{"@type":"Answer","text":"Copy the URL of a supported public Pinterest video, paste it into the NEXTVIDEO downloader, and select Download Video."}},
+    {"@type":"Question","name":"Can I use the X downloader on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page is designed for supported modern mobile and desktop browsers."}},
+    {"@type":"Question","name":"Do I need to install an app?","acceptedAnswer":{"@type":"Answer","text":"No separate downloader app is required for the web workflow. Use a supported modern browser."}},
+    {"@type":"Question","name":"Can I download private or restricted Pinterest videos?","acceptedAnswer":{"@type":"Answer","text":"No. Private, restricted, DRM-protected or otherwise inaccessible content is not supported."}},
+    {"@type":"Question","name":"Is NEXTVIDEO affiliated with X?","acceptedAnswer":{"@type":"Answer","text":"No. NEXTVIDEO is an independent service and is not affiliated with, endorsed by, or sponsored by X."}}
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+<a aria-label="NEXTVIDEO Home" class="brand" href="index.html">
+<span class="brand-mark">▶</span>
+<span class="brand-copy">
+<strong>NEXT<span>VIDEO</span></strong>
+<small>All-in-One Video &amp; Media Tools</small>
+</span>
+</a>
+<nav aria-label="Main navigation" class="nav">
+<a href="index.html">Home</a>
+<a href="tools.html">All Tools</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a class="btn primary" href="tools.html">Explore Tools</a>
+</nav>
+</header>
+<main id="top">
+<section class="hero">
+<div class="container hero-grid">
+<div class="hero-content">
+<div class="kicker">X • VIDEO • DOWNLOADER</div>
+<h1>Pinterest Video Downloader<br/><span>Save Pinterest Videos</span></h1>
+<p>NEXTVIDEO is a simple online tool for processing supported public Pinterest videos. Copy the link, paste it below and start processing.</p>
+<form class="dl-form" id="xDownloadForm">
+<input aria-label="Pinterest video URL" autocomplete="off" id="xUrl" name="url" placeholder="Paste Pinterest video URL here..." required="" type="url"/>
+<button id="downloadBtn" type="submit">⇩ Download Video</button>
+</form>
+<div aria-live="polite" class="result" id="result" role="status"></div>
+<div class="note">🔒 <b>No registration required.</b> Use only content you own or have permission to download.</div>
+</div>
+<div aria-hidden="true" class="hero-art">
+<div class="float-icon float-inst">◎</div>
+<div class="float-icon float-fb">f</div>
+<div class="float-icon float-tt">♪</div>
+<div class="float-icon float-x">𝕏</div>
+<div class="float-icon float-p">P</div>
+<div class="float-icon float-down">⇩</div>
+<div class="phone">
+<div class="phone-notch"></div>
+<div class="phone-screen">
+<div class="circle-play">▶</div>
+<strong>X Video</strong>
+<div class="circle-dl">⇩</div>
+<div class="phone-sub">Simple browser workflow</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="center"><h2>X Downloader Features</h2><p class="sub">Built around the same clean NEXTVIDEO experience.</p></div>
+<div class="platform-grid">
+<div class="platform"><div class="picon p-inst">◎</div><h3>Pinterest Videos</h3><p>Process supported public video URLs.</p><span class="arrow">›</span></div>
+<div class="platform"><div class="picon p-reel">▶</div><h3>Pinterest Videos</h3><p>Process supported public Pinterest video URLs.</p><span class="arrow">›</span></div>
+<div class="platform"><div class="picon p-public">✓</div><h3>Public Content</h3><p>Designed for accessible or authorized media.</p><span class="arrow">›</span></div>
+<div class="platform"><div class="picon p-mobile">▣</div><h3>Mobile &amp; PC</h3><p>Use the browser workflow on supported devices.</p><span class="arrow">›</span></div>
+</div>
+</div>
+</section>
+<section class="section benefits">
+<div class="container benefit-grid">
+<div class="benefit"><div class="bicon">⚡</div><h3>Fast &amp; Simple</h3><p>Paste the link and start processing.</p></div>
+<div class="benefit"><div class="bicon">✓</div><h3>No Signup</h3><p>No separate account is required for the basic workflow.</p></div>
+<div class="benefit"><div class="bicon">▣</div><h3>Browser Based</h3><p>Use the tool from a supported modern browser.</p></div>
+<div class="benefit"><div class="bicon">🔒</div><h3>Transparent Use</h3><p>Private and restricted content is not supported.</p></div>
+</div>
+</section>
+<section class="stats"><div class="container stats-grid">
+<div class="stat"><strong>3</strong><span>Simple Steps</span></div>
+<div class="stat"><strong>24/7</strong><span>Web Access</span></div>
+<div class="stat"><strong>1</strong><span>Simple URL Workflow</span></div>
+<div class="stat"><strong>5+</strong><span>Platform Tools</span></div>
+</div></section>
+<section class="section">
+<div class="container content">
+<div class="center"><h2>Pinterest Video Downloader</h2><p class="sub">A focused guide for processing supported public Pinterest video URLs with NEXTVIDEO.</p></div>
+<h3>What is an Pinterest Video Downloader?</h3>
+<p>NEXTVIDEO provides an online Pinterest video downloader for supported publicly accessible X URLs. The page is designed to keep the process straightforward: copy a link from X, paste it into the tool and submit it for processing.</p>
+<h3>How to Download an X (Pinterest) Video</h3>
+<p>You can follow this simple workflow on a phone, tablet or computer:</p>
+<ul>
+<li>Open X and copy the URL of the supported public video.</li>
+<li>Paste the X link into the NEXTVIDEO input box above.</li>
+<li>Select Download Video and wait for processing to complete.</li>
+</ul>
+<h3>Download Pinterest videos Online</h3>
+<p>Pinterest videos are commonly shared through direct links. A supported public Pinterest video URL can be submitted through the same copy-and-paste workflow.</p>
+<h3>X Video Downloader for Android, iPhone and PC</h3>
+<p>The interface is responsive so the same basic workflow can be used from mobile or desktop browsers. On a phone, copy the Pinterest video link and paste it into your browser. On a computer, copy the Pinterest video URL and paste it directly into the downloader.</p>
+<h3>What X Content is Supported?</h3>
+<p>Availability depends on how X serves the requested media. NEXTVIDEO is intended for supported public or authorized content. Private accounts, restricted URLs, DRM-protected material and otherwise inaccessible media are not supported.</p>
+<div class="legal"><b>Important:</b> Only download or process media when you have the necessary rights, permission, licence or other legal authorization. NEXTVIDEO does not encourage copyright infringement, unauthorized redistribution, or circumvention of DRM, access controls or private-content restrictions. X is an independent third-party service; NEXTVIDEO is not affiliated with, endorsed by, or sponsored by X.</div>
+</div>
+</section>
+<section class="section how"><div class="container">
+<div class="center"><h2>How It Works</h2><p class="sub">Process supported Pinterest videos in 3 simple steps.</p></div>
+<div class="steps">
+<div class="step"><div class="step-no">1</div><h3>Copy URL</h3><p>Copy the public Pinterest video URL you are authorized to use.</p></div>
+<div class="step"><div class="step-no">2</div><h3>Paste &amp; Process</h3><p>Paste the link into the NEXTVIDEO downloader and start processing.</p></div>
+<div class="step"><div class="step-no">3</div><h3>Download</h3><p>Save the returned media file when processing succeeds.</p></div>
+</div>
+</div></section>
+<section class="section">
+<div class="container">
+<div class="faq-wrap">
+<h2 style="font-size:24px;margin:0 0 12px">Frequently Asked Questions</h2>
+<div class="faq-grid">
+<details class="faq"><summary>How do I download an Pinterest video?</summary><p>Copy the URL of a supported public Pinterest video, paste it into the downloader above, and select Download Video.</p></details>
+<details class="faq"><summary>Can I download Pinterest videos?</summary><p>NEXTVIDEO is designed to process supported publicly accessible Pinterest video URLs, for supported public videos.</p></details>
+<details class="faq"><summary>Do I need to install an app?</summary><p>No separate downloader app is required for the web workflow. Use a supported modern browser on mobile or desktop.</p></details>
+<details class="faq"><summary>Can I download private Pinterest videos?</summary><p>No. Private, restricted, DRM-protected or otherwise inaccessible content is not supported.</p></details>
+<details class="faq"><summary>Is NEXTVIDEO affiliated with X?</summary><p>No. NEXTVIDEO is an independent service and is not affiliated with, endorsed by, or sponsored by X.</p></details>
+<details class="faq"><summary>Why might a download fail?</summary><p>A download can fail when a URL is unavailable, restricted, unsupported or cannot be processed by the service at that time.</p></details>
+</div>
+</div>
+</div>
+</section>
+<section class="cta"><div class="container"><div class="cta-box"><h2>Explore More NEXTVIDEO Tools</h2><p>Use the full collection of video, audio, image and AI utility tools.</p><a class="cta-btn" href="tools.html">Explore All Tools →</a></div></div></section>
+</main>
+<footer class="footer"><div class="container">
+<div class="footer-grid">
+<div><div class="brand"><span class="brand-mark">▶</span><span class="brand-copy"><strong style="color:#fff">NEXT<span>VIDEO</span></strong><small style="color:#8894a8">All-in-One Video &amp; Media Tools</small></span></div><div class="footer-desc">Online video and media utilities for public or authorized content.</div></div>
+<div><h4>Tools</h4><a href="tools.html">All Tools</a><a href="instagram-video-downloader.html">Instagram Downloader</a><a href="tools.html">AI Tools</a><a href="tools.html">Image Tools</a></div>
+<div><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+<div><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclaimer.html">Disclaimer</a><a href="dmca.html">DMCA</a></div>
+</div>
+<div class="copyright">© 2026 NEXTVIDEO. All rights reserved.</div>
+</div></footer>
+<script>
+const form=document.getElementById('xDownloadForm');
+const input=document.getElementById('xUrl');
+const button=document.getElementById('downloadBtn');
+const result=document.getElementById('result');
+const BACKEND_URL='https://violet-rook-563536.hostingersite.com/api/download';
+
+function showResult(message){result.style.display='block';result.textContent=message;}
+function isXUrl(value){
+  try{
+    const u=new URL(value);
+    const h=u.hostname.toLowerCase();
+    return u.protocol==='https:' && (h==='pinterest.com'||h==='www.pinterest.com'||h==='pinterest.com'||h==='www.pinterest.com'||h==='mobile.pinterest.com'||h.endsWith('.pinterest.com')||h.endsWith('.pinterest.com'));
+  }catch(e){return false;}
+}
+
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const url=input.value.trim();
+  if(!isXUrl(url)){showResult('Please enter a valid X URL.');return;}
+  button.disabled=true;button.textContent='Processing...';result.style.display='none';
+  try{
+    const response=await fetch(BACKEND_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url})});
+    if(!response.ok){
+      let msg='The download could not be completed.';
+      try{const data=await response.json();if(data?.error)msg=data.error;}catch(_){ }
+      throw new Error(msg);
+    }
+    const blob=await response.blob();
+    if(!blob.size)throw new Error('No downloadable file was returned.');
+    const objectUrl=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=objectUrl;link.download='pinterest-video.mp4';
+    document.body.appendChild(link);link.click();link.remove();
+    URL.revokeObjectURL(objectUrl);
+    showResult('Download started successfully.');
+  }catch(error){
+    showResult(error?.message||'Something went wrong. Please try another supported public X URL.');
+  }finally{
+    button.disabled=false;button.textContent='⇩ Download Video';
+  }
+});
+</script>
+</body>
+</html>

@@ -3,71 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXTVIDEO — Coming Soon</title>
+<title>Social Media Video Downloader – NEXTVIDEO</title>
+<meta name="description" content="NEXTVIDEO is an easy-to-use online social media video downloader for supported public or authorized videos from Instagram, Facebook, TikTok, X and Pinterest.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://nextvideo.in/">
+<meta property="og:title" content="Social Media Video Downloader – NEXTVIDEO">
+<meta property="og:description" content="Download supported public or authorized social media videos with NEXTVIDEO.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nextvideo.in/">
 <style>
+:root{
+  --ink:#101a36;--muted:#5f6c86;--blue:#2563eb;--purple:#7546f2;
+  --line:#e7ebf4;--soft:#f7f8fd;--hero1:#edf5ff;--hero2:#f8f1ff;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,sans-serif;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#eef4ff,#f7f1ff);
-  color:#172033;
-  text-align:center;
-  padding:20px;
-}
-.box{
-  max-width:650px;
-  width:100%;
-  background:white;
-  padding:55px 30px;
-  border-radius:24px;
-  box-shadow:0 15px 50px rgba(40,60,120,.12);
-}
-.logo{
-  font-size:32px;
-  font-weight:800;
-  color:#2563eb;
-  margin-bottom:30px;
-}
-.logo span{color:#7c3aed}
-.icon{font-size:55px;margin-bottom:20px}
-h1{font-size:42px;margin-bottom:15px}
-p{
-  font-size:18px;
-  line-height:1.6;
-  color:#667085;
-}
-.badge{
-  display:inline-block;
-  margin-top:30px;
-  padding:12px 22px;
-  border-radius:30px;
-  background:#eef4ff;
-  color:#2563eb;
-  font-weight:700;
-}
-.small{
-  margin-top:25px;
-  font-size:14px;
-  color:#98a2b3;
-}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.45}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,92%);margin:auto}
+
+/* HEADER */
+.site-header{height:70px;background:#fff;border-bottom:1px solid #eef1f6;display:flex;align-items:center;justify-content:space-between;padding:0 4%;position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:10px;min-width:210px}
+.brand-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#2f63ea,#7b46f1);color:#fff;font-weight:900;font-size:16px;box-shadow:0 7px 18px rgba(64,78,210,.2)}
+.brand-copy strong{display:block;font-size:21px;letter-spacing:-.5px}
+.brand-copy strong span{color:#6748ef}
+.brand-copy small{display:block;font-size:9px;color:#7f8899;line-height:1.1}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:14px;color:#4c5871;padding:24px 0 21px;border-bottom:3px solid transparent}
+.nav a:hover,.nav a.active{color:#141b34;border-bottom-color:#4b69ff}
+.actions{display:flex;gap:9px;min-width:164px;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 17px;border:1px solid #e4e8f0;font-size:13px;font-weight:700;background:#fff}
+.btn.primary{background:linear-gradient(135deg,#5b47e9,#7d45ef);color:#fff;border:none;padding-inline:20px}
+
+/* HERO */
+.hero{background:radial-gradient(circle at 15% 28%,rgba(62,125,255,.12),transparent 30%),radial-gradient(circle at 85% 25%,rgba(146,76,255,.12),transparent 31%),linear-gradient(135deg,var(--hero1),var(--hero2));padding:56px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center}
+.kicker{font-size:12px;color:#5a46ef;letter-spacing:1.5px;font-weight:800;margin-bottom:14px}
+.hero h1{font-size:52px;line-height:1.05;letter-spacing:-2px;max-width:650px;margin-bottom:18px}
+.hero h1 span{background:linear-gradient(90deg,#2169ea,#7d48ef);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:17px;line-height:1.65;color:var(--muted);max-width:690px;margin-bottom:25px}
+.dl-form{display:flex;align-items:stretch;max-width:700px;background:#fff;border:1px solid #dae2f1;border-radius:14px;padding:6px;box-shadow:0 10px 30px rgba(45,65,105,.10)}
+.dl-form input{flex:1;border:0;outline:none;padding:15px 15px;font-size:14px;color:#26334d;min-width:0}
+.dl-form input::placeholder{color:#7f8998}
+.dl-form button{border:0;border-radius:10px;background:linear-gradient(135deg,#5546e8,#7d43ec);color:#fff;font-size:14px;font-weight:800;padding:0 21px;cursor:pointer}
+.note{margin-top:11px;font-size:11px;color:#68758d}.note b{color:#485369}
+
+/* HERO ART */
+.hero-art{position:relative;min-height:350px;display:flex;align-items:center;justify-content:center}
+.phone{width:246px;height:355px;border:8px solid #111b33;border-radius:28px;background:linear-gradient(145deg,#dcecff,#eee7ff);transform:rotate(4deg);box-shadow:0 24px 50px rgba(46,58,98,.22);position:relative;z-index:2}
+.phone-notch{position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:78px;height:22px;background:#10192e;border-radius:0 0 14px 14px}
+.phone-screen{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding-top:10px}
+.circle-play{width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#5a49eb;font-size:24px;box-shadow:0 10px 23px rgba(25,41,72,.12)}
+.phone-screen strong{font-size:15px}.phone-sub{font-size:11px;color:#69758d;text-align:center}
+.circle-dl{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#2e6fed,#8143ef);color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 13px 30px rgba(70,76,213,.28)}
+.float-icon{position:absolute;z-index:3;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;box-shadow:0 9px 23px rgba(48,61,106,.10);font-weight:900}
+.float-inst{left:3%;top:22%;background:linear-gradient(135deg,#f9b049,#9c36ef);color:#fff}.float-fb{right:4%;top:21%;background:#2381ed;color:#fff}.float-tt{left:2%;bottom:24%;background:#050505;color:#fff}.float-x{right:2%;bottom:25%;background:#050505;color:#fff}.float-p{right:13%;bottom:2%;background:#ef1f34;color:#fff}.float-down{right:16%;top:55%;width:80px;height:80px;border-radius:50%;background:#fff;color:#6247ed;font-size:35px;box-shadow:0 14px 35px rgba(48,61,106,.15)}
+
+/* PLATFORM */
+.section{padding:56px 0}.center{text-align:center}.section h2{font-size:30px;letter-spacing:-.7px;margin-bottom:5px}.sub{font-size:15px;color:#6d7890}
+.platform-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px}
+.platform{border:1px solid #e6eaf2;border-radius:16px;padding:20px 14px;background:#fff;text-align:center;transition:.2s;min-height:125px}.platform:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(43,58,98,.08)}
+.platform .picon{width:46px;height:46px;border-radius:12px;margin:0 auto 12px;display:grid;place-items:center;font-size:24px;font-weight:900}.p-inst{background:linear-gradient(135deg,#f7a94a,#ae2cec);color:#fff}.p-fb{background:#2381ed;color:#fff}.p-tt{background:#050505;color:#fff}.p-x{background:#050505;color:#fff}.p-p{background:#ef1f34;color:#fff}
+.platform h3{font-size:14px;line-height:1.25}.platform p{font-size:11px;color:#78849a;margin-top:5px}.arrow{display:block;color:#5a4cef;font-size:20px;margin-top:8px}
+
+/* BENEFITS */
+.benefits{background:#f7f8fd;border-top:1px solid #eef0f6;border-bottom:1px solid #eef0f6}.benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.benefit{text-align:center;padding:9px 12px}.bicon{width:43px;height:43px;border-radius:12px;margin:0 auto 11px;display:grid;place-items:center;background:linear-gradient(145deg,#dfeaff,#ece5ff);font-size:21px;color:#4d50f0}.benefit h3{font-size:15px;margin-bottom:4px}.benefit p{font-size:12px;color:#758099}
+
+/* STATS */
+.stats{background:linear-gradient(90deg,#286af2,#4b4bed,#7a42ef);color:#fff;padding:25px 0}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}.stat{text-align:center;position:relative}.stat:not(:last-child)::after{content:"";position:absolute;right:0;top:12%;width:1px;height:76%;background:rgba(255,255,255,.27)}.stat strong{display:block;font-size:30px;line-height:1;margin-bottom:7px}.stat span{font-size:12px;color:#edf0ff}
+
+/* TOOL CARDS */
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:25px}.tool-card{border:1px solid #e5e9f1;border-radius:15px;padding:21px;background:#fff;min-height:185px}.tool-ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;margin-bottom:13px;background:#eee5ff;color:#7a49ed;font-weight:800}.tool-card:nth-child(2) .tool-ico{background:#dff7e9;color:#12a764}.tool-card:nth-child(3) .tool-ico{background:#ffe4ef;color:#ef4f83}.tool-card:nth-child(4) .tool-ico{background:#fff0c9;color:#dca500}.tool-card h3{font-size:17px;margin-bottom:7px}.tool-card p{font-size:13px;color:#718098;max-width:220px;margin-bottom:15px}.tool-card a{font-size:12px;color:#5b49e9;font-weight:800}
+
+/* HOW IT WORKS */
+.how{background:#fafbff}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}.step{text-align:center;padding:10px 25px}.step-no{width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,#246cf0,#7444ef);color:#fff;display:grid;place-items:center;margin:0 auto 12px;font-weight:900}.step h3{font-size:16px;margin-bottom:6px}.step p{font-size:13px;color:#718097;max-width:250px;margin:auto}
+
+/* FAQ */
+.faq-wrap{max-width:930px;margin:25px auto 0;background:#f8f9ff;border-radius:15px;padding:15px}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.faq{background:#fff;border:1px solid #eceef4;border-radius:10px;overflow:hidden}.faq summary{padding:15px 17px;cursor:pointer;font-size:13px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"⌄";color:#5a49ec}.faq p{font-size:12px;color:#6f7b91;padding:0 17px 15px}
+
+/* FOOTER */
+.footer{background:#0d162a;color:#fff;padding:38px 0 19px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.footer h4{font-size:13px;margin-bottom:11px}.footer a{display:block;font-size:12px;color:#aeb8ca;margin-bottom:7px}.footer a:hover{color:#fff}.footer-desc{font-size:12px;color:#aeb8ca;max-width:290px;margin-top:10px}.copyright{border-top:1px solid rgba(255,255,255,.08);padding-top:17px;margin-top:25px;text-align:center;color:#7d899f;font-size:11px}
+
+@media(max-width:1000px){.nav{display:none}.hero-grid{grid-template-columns:1fr}.hero-content{text-align:left}.hero-art{margin-top:5px}.platform-grid{grid-template-columns:repeat(3,1fr)}.tool-grid{grid-template-columns:repeat(2,1fr)}.benefit-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.site-header{padding:0 3%}.actions{min-width:0}.brand{min-width:0}.hero{padding:45px 0}.hero h1{font-size:38px}.hero p{font-size:15px}.dl-form{flex-direction:column}.dl-form button{padding:14px;margin-top:6px}.platform-grid,.benefit-grid,.tool-grid,.steps,.faq-grid,.footer-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr;gap:15px}.stat:not(:last-child)::after{display:none}.float-icon{transform:scale(.88)}.phone{width:215px;height:325px}.float-down{right:9%;}}
 </style>
 </head>
-
 <body>
-<div class="box">
-  <div class="logo">NEXT<span>VIDEO</span></div>
-  <div class="icon">🚧</div>
-  <h1>We're Coming Soon</h1>
-  <p>
-    NEXTVIDEO is currently under development.
-    We're working hard to bring you a fast and powerful
-    all-in-one video and media toolkit.
-  </p>
-  <div class="badge">Website Under Development</div>
-  <div class="small">Please check back soon.</div>
-</div>
+<header class="site-header">
+  <a class="brand" href="#top"><span class="brand-mark">▶</span><span class="brand-copy"><strong>NEXT<span>VIDEO</span></strong><small>All-in-One Video &amp; Media Tools</small></span></a>
+  <nav class="nav"><a class="active" href="#top">Home</a><a href="#tools">Video Tools</a><a href="#tools">AI Tools</a><a href="#tools">Image Tools</a><a href="#tools">Audio Tools</a><a href="tools.html">All Tools</a></nav>
+  <div class="actions"><a class="btn" href="contact.html">Login</a><a class="btn primary" href="contact.html">Sign Up</a></div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="kicker">FAST • SIMPLE • ONLINE</div>
+      <h1>Download Videos from<br><span>Your Favorite Platforms</span></h1>
+      <p>NEXTVIDEO is an easy-to-use online media utility for processing supported public or authorized videos from multiple social media platforms.</p>
+      <form class="dl-form" id="homeForm">
+        <input id="homeUrl" type="url" required autocomplete="off" placeholder="Paste video URL here...">
+        <button type="submit">⇩ Download Video</button>
+      </form>
+      <div class="note">🔒 <b>No registration required.</b> Use only content you own or have permission to download.</div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="float-icon float-inst">◎</div>
+      <div class="float-icon float-fb">f</div>
+      <div class="float-icon float-tt">♪</div>
+      <div class="float-icon float-x">𝕏</div>
+      <div class="float-icon float-p">P</div>
+      <div class="float-icon float-down">⇩</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="circle-play">▶</div>
+          <strong>Video Ready</strong>
+          <div class="circle-dl">⇩</div>
+          <div class="phone-sub">Fast social media downloads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="center"><h2>Popular Platforms</h2><p class="sub">Choose a platform to start downloading</p></div>
+    <div class="platform-grid">
+      <a class="platform" href="instagram-video-downloader.html"><div class="picon p-inst">◎</div><h3>Instagram<br>Downloader</h3><p>Supported public Instagram media</p><span class="arrow">›</span></a>
+      <a class="platform" href="facebook-video-downloader.html"><div class="picon p-fb">f</div><h3>Facebook<br>Downloader</h3><p>Supported public Facebook media</p><span class="arrow">›</span></a>
+      <a class="platform" href="tiktok-video-downloader.html"><div class="picon p-tt">♪</div><h3>TikTok<br>Downloader</h3><p>Supported public TikTok media</p><span class="arrow">›</span></a>
+      <a class="platform" href="x-video-downloader.html"><div class="picon p-x">𝕏</div><h3>X / Twitter<br>Downloader</h3><p>Supported public X media</p><span class="arrow">›</span></a>
+      <a class="platform" href="pinterest-video-downloader.html"><div class="picon p-p">P</div><h3>Pinterest<br>Downloader</h3><p>Supported public Pinterest media</p><span class="arrow">›</span></a>
+    </div>
+    <div style="text-align:center;margin-top:18px;font-size:12px;color:#6f7b91;">
+      Also available: <a href="snapchat-video-downloader.html" style="color:#5a4cef;font-weight:800;">Snapchat Video Downloader →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section benefits"><div class="container benefit-grid">
+  <div class="benefit"><div class="bicon">⚡</div><h3>Fast &amp; Easy</h3><p>Just paste the link and start processing.</p></div>
+  <div class="benefit"><div class="bicon">✓</div><h3>100% Free</h3><p>No hidden charges. Always free to use.</p></div>
+  <div class="benefit"><div class="bicon">▣</div><h3>Multi-Platform</h3><p>Support for multiple social media platforms.</p></div>
+  <div class="benefit"><div class="bicon">🔒</div><h3>No Signup Required</h3><p>Start downloading without registration.</p></div>
+</div></section>
+
+<section class="stats"><div class="container stats-grid">
+  <div class="stat"><strong>Fast</strong><span>Simple online workflow</span></div>
+  <div class="stat"><strong>Free</strong><span>No signup required</span></div>
+  <div class="stat"><strong>Multi</strong><span>Supported platforms</span></div>
+  <div class="stat"><strong>Secure</strong><span>No platform login required</span></div>
+</div></section>
+
+<section class="section" id="tools"><div class="container">
+  <div class="center"><h2>Explore Our Tools</h2><p class="sub">More than just a video downloader. NEXTVIDEO offers a complete set of online tools.</p></div>
+  <div class="tool-grid">
+    <article class="tool-card"><div class="tool-ico">▷</div><h3>Video Tools</h3><p>Download, convert, compress, cut, merge and more.</p><a href="tools.html">View Tools →</a></article>
+    <article class="tool-card"><div class="tool-ico">AI</div><h3>AI Tools</h3><p>Generate captions, transcripts, summaries and more.</p><a href="tools.html">View Tools →</a></article>
+    <article class="tool-card"><div class="tool-ico">▧</div><h3>Image Tools</h3><p>Compress, resize, convert and edit images.</p><a href="tools.html">View Tools →</a></article>
+    <article class="tool-card"><div class="tool-ico">♫</div><h3>Audio Tools</h3><p>Convert, compress, cut and edit audio files.</p><a href="tools.html">View Tools →</a></article>
+  </div>
+</div></section>
+
+<section class="section how"><div class="container">
+  <div class="center"><h2>How It Works</h2><p class="sub">Download videos in just 3 simple steps.</p></div>
+  <div class="steps">
+    <div class="step"><div class="step-no">1</div><h3>Paste URL</h3><p>Copy and paste the video URL from your favorite platform.</p></div>
+    <div class="step"><div class="step-no">2</div><h3>Process</h3><p>Our system will process the video link.</p></div>
+    <div class="step"><div class="step-no">3</div><h3>Download</h3><p>Download your video in high quality when processing succeeds.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="faq-wrap">
+    <h2 style="font-size:24px;margin:0 0 12px">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <details class="faq"><summary>Is NEXTVIDEO free to use?</summary><p>NEXTVIDEO provides a simple online interface for supported tools. Availability of individual features may vary.</p></details>
+      <details class="faq"><summary>Do I need to create an account?</summary><p>The downloader uses a simple URL-based workflow and does not require private platform login credentials.</p></details>
+      <details class="faq"><summary>Which platforms are supported?</summary><p>NEXTVIDEO is designed for supported public or authorized media URLs from supported social platforms.</p></details>
+      <details class="faq"><summary>Is it safe to download videos?</summary><p>Use NEXTVIDEO only for content you own or are legally authorized to download. Private, restricted or DRM-protected content may not be available.</p></details>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div><div class="brand"><span class="brand-mark">▶</span><span class="brand-copy"><strong style="color:#fff">NEXT<span>VIDEO</span></strong><small style="color:#8894a8">All-in-One Video &amp; Media Tools</small></span></div><div class="footer-desc">Online video and media utilities for public or authorized content.</div></div>
+    <div><h4>Tools</h4><a href="tools.html">All Tools</a><a href="video-downloader.html">Video Downloader</a><a href="tools.html">AI Tools</a><a href="tools.html">Image Tools</a></div>
+    <div><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclaimer.html">Disclaimer</a><a href="dmca.html">DMCA</a></div>
+  </div>
+  <div class="copyright">© 2026 NEXTVIDEO. All rights reserved.</div>
+</div></footer>
+
+<script>
+document.getElementById('homeForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const u=document.getElementById('homeUrl').value.trim();
+  if(!u)return;
+  window.location.href='video-downloader.html?url='+encodeURIComponent(u);
+});
+</script>
 </body>
 </html>
