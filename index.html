@@ -207,7 +207,7 @@ document.getElementById('homeForm').addEventListener('submit',function(e){
   e.preventDefault();
   const u=document.getElementById('homeUrl').value.trim();
   if(!u)return;
-  window.location.href='video-downloader.html?url='+encodeURIComponent(u);
+  window.location.href='tool.html?tool=Video%20Downloader&url='+encodeURIComponent(u);
 });
 </script>
 </body>
