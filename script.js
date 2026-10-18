@@ -74,11 +74,48 @@
       return `${size >= 100 || index === 0 ? size.toFixed(0) : size.toFixed(1)} ${units[index]}`;
     };
 
+    // Reduce long social-media captions to a practical title for display and filenames.
+    // If a source puts engagement counts and description sections around the title,
+    // prefer the first actual title segment rather than saving the whole caption.
+    const makeShortTitle = (rawTitle) => {
+      let value = String(rawTitle || '')
+        .normalize('NFKC')
+        .replace(/[\r\n\t]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (!value) return '';
+
+      const sections = value.split(/\s*\|\s*/).map((part) => part.trim()).filter(Boolean);
+      if (sections.length > 1) {
+        // Drop a leading section such as "18K views · 2.2K reactions".
+        if (/(?:^|\b)\d[\d.,]*\s*[KMB]?\s*(?:views?|reactions?|likes?|comments?|shares?)\b/i.test(sections[0])) {
+          sections.shift();
+        }
+        value = sections[0] || value;
+      }
+
+      value = value.replace(/^\s*\d[\d.,]*\s*[KMB]?\s+(?:views?|reactions?|likes?|comments?|shares?)\b\s*[·•-]?\s*/i, '').trim();
+      // Remove leading emoji/decorative symbols so the saved filename looks professional.
+      value = value.replace(/^[^\p{L}\p{N}]+/u, '').trim();
+      // Avoid carrying a trailing run of hashtags into a filename/title.
+      value = value.replace(/(?:\s+#[\p{L}\p{N}_-]+)+\s*$/gu, '').trim();
+
+      // Keep unusually long single-part titles readable and filenames practical.
+      const maxCharacters = 72;
+      const characters = Array.from(value);
+      if (characters.length > maxCharacters) {
+        const limited = characters.slice(0, maxCharacters).join('');
+        const lastSpace = limited.lastIndexOf(' ');
+        value = (lastSpace > 36 ? limited.slice(0, lastSpace) : limited).trim();
+      }
+      return value.replace(/[|·•,\s-]+$/g, '').trim();
+    };
+
     // Build a filename from the source video's real title, safe on Windows, Android and browsers.
     const makeDownloadFilename = (rawTitle, rawExtension) => {
       let base = String(rawTitle || '')
         .normalize('NFKC')
-        .replace(/[\u0000-\u001F\u007F<>:"/\\|?*]/g, ' ')
+        .replace(/[\u0000-\u001F\u007F<>:"\/\\|?*]/g, ' ')
         .replace(/\s+/g, ' ')
         .trim()
         .replace(/[. ]+$/g, '');
@@ -241,7 +278,13 @@
     };
 
     const showVideo = (video, videoUrl) => {
-      title.textContent = video?.title || 'Video details';
+      const downloadTitle = makeShortTitle(video?.title) || 'video';
+      title.textContent = downloadTitle;
+      // Keep a long title from expanding the result card beyond two lines.
+      title.style.display = '-webkit-box';
+      title.style.webkitBoxOrient = 'vertical';
+      title.style.webkitLineClamp = '2';
+      title.style.overflow = 'hidden';
       const formattedDuration = formatDuration(video?.duration);
       duration.textContent = formattedDuration ? `Duration: ${formattedDuration}` : 'Duration unavailable';
 
@@ -270,7 +313,6 @@
       const fallbackOnly = video?.fallbackOnly === true || options.length === 0;
       if (options.length === 0) options = [makeFallbackFormat()];
 
-      const downloadTitle = typeof video?.title === 'string' ? video.title : '';
       const videoCount = renderFormats(videoFormats, options, 'video', videoUrl, downloadTitle);
       const audioCount = renderFormats(audioFormats, video?.audioFormats, 'audio', videoUrl, downloadTitle);
       audioSection.hidden = audioCount === 0;
