@@ -122,6 +122,22 @@ a{text-decoration:none;color:inherit}
 #videoResult .nv-empty{padding:14px;color:#68758d;background:#f7f8fd;border-radius:10px;font-size:13px}
 @media(max-width:650px){#videoResult{padding:15px;margin:20px auto}#videoResult .nv-preview{align-items:flex-start;gap:12px}#videoResult .nv-thumbnail-wrap{width:100px;flex-basis:100px}#videoResult .nv-format-row{gap:8px;padding:10px}#videoResult .nv-file-badge{min-width:44px;padding:7px 5px}#videoResult .nv-download-button{padding:9px;font-size:12px}}
 
+
+/* Mobile-only layout: replace the decorative hero illustration with live download options. */
+@media(max-width:650px){
+  .hero-art{display:none!important}
+  #videoResult.nv-mobile-in-hero{grid-column:1/-1;width:100%;max-width:none;margin:12px auto 0;padding:12px}
+  #videoResult.nv-mobile-in-hero .nv-preview{gap:10px;margin-bottom:14px}
+  #videoResult.nv-mobile-in-hero .nv-thumbnail-wrap{width:76px;flex-basis:76px}
+  #videoResult.nv-mobile-in-hero .nv-thumbnail{max-height:110px}
+  #videoResult.nv-mobile-in-hero .nv-video-meta h2{font-size:17px}
+  #videoResult.nv-mobile-in-hero .nv-format-section{margin-top:14px}
+  #videoResult.nv-mobile-in-hero .nv-section-heading h3,
+  #videoResult.nv-mobile-in-hero .nv-format-section>h3{font-size:16px}
+  #videoResult.nv-mobile-in-hero .nv-format-row{gap:7px;padding:9px}
+  #videoResult.nv-mobile-in-hero .nv-download-button{padding:8px;font-size:11px}
+}
+
 </style>
 </head>
 <body>

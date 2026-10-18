@@ -15,6 +15,27 @@
     const status = document.getElementById('status');
     const submitButton = document.getElementById('inspectButton');
     const result = document.getElementById('videoResult');
+    const heroGrid = document.querySelector('.hero-grid');
+    const heroContent = document.querySelector('.hero-content');
+    const resultHomePlaceholder = result ? document.createComment('NEXTVIDEO result original position') : null;
+    if (result && result.parentNode) result.parentNode.insertBefore(resultHomePlaceholder, result);
+
+    const syncMobileResultPlacement = () => {
+      if (!result || !resultHomePlaceholder || !heroGrid || !heroContent) return;
+      const mobile = window.matchMedia('(max-width: 650px)').matches;
+      if (mobile) {
+        if (result.parentNode !== heroGrid) {
+          heroContent.insertAdjacentElement('afterend', result);
+        }
+        result.classList.add('nv-mobile-in-hero');
+      } else {
+        if (result.parentNode !== resultHomePlaceholder.parentNode && resultHomePlaceholder.parentNode) {
+          resultHomePlaceholder.parentNode.insertBefore(result, resultHomePlaceholder.nextSibling);
+        }
+        result.classList.remove('nv-mobile-in-hero');
+      }
+    };
+    window.addEventListener('resize', syncMobileResultPlacement, { passive: true });
     const thumbnail = document.getElementById('videoThumbnail');
     const thumbnailFallback = document.getElementById('thumbnailFallback');
     const title = document.getElementById('videoTitle');
@@ -232,6 +253,7 @@
       const audioCount = renderFormats(audioFormats, video?.audioFormats, 'audio', videoUrl);
       audioSection.hidden = audioCount === 0;
       result.hidden = false;
+      syncMobileResultPlacement();
       if (fallbackOnly) {
         setStatus(
           'Quality details were not available. You can try the automatic MP4 option; download success still depends on source access and supported formats.',
