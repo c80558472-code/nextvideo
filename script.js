@@ -74,6 +74,27 @@
       return `${size >= 100 || index === 0 ? size.toFixed(0) : size.toFixed(1)} ${units[index]}`;
     };
 
+    // Build a filename from the source video's real title, safe on Windows, Android and browsers.
+    const makeDownloadFilename = (rawTitle, rawExtension) => {
+      let base = String(rawTitle || '')
+        .normalize('NFKC')
+        .replace(/[\u0000-\u001F\u007F<>:"/\\|?*]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/[. ]+$/g, '');
+
+      if (!base || /^(video details unavailable|video details)$/i.test(base)) base = 'video';
+
+      const extension = String(rawExtension || 'mp4').toLowerCase().replace(/[^a-z0-9]/g, '') || 'mp4';
+      if (base.toLowerCase().endsWith(`.${extension}`)) {
+        base = base.slice(0, -(extension.length + 1)).replace(/[. ]+$/g, '');
+      }
+      // Keep names at a practical length and avoid Windows reserved device names.
+      base = Array.from(base).slice(0, 180).join('').replace(/[. ]+$/g, '') || 'video';
+      if (/^(con|prn|aux|nul|com[1-9]|lpt[1-9])$/i.test(base)) base = `_${base}`;
+      return `${base}.${extension}`;
+    };
+
     const parseResponse = async (response) => {
       const contentType = response.headers.get('content-type') || '';
       if (contentType.includes('application/json')) {
@@ -122,7 +143,7 @@
       filesize: null
     });
 
-    const downloadFormat = async (videoUrl, format, kind, button) => {
+    const downloadFormat = async (videoUrl, format, kind, videoTitle, button) => {
       const originalLabel = button.textContent;
       button.disabled = true;
       button.textContent = 'Preparing…';
@@ -159,7 +180,7 @@
         const link = document.createElement('a');
         const extension = String(format.ext || 'mp4').replace(/[^a-z0-9]/gi, '') || 'mp4';
         link.href = objectUrl;
-        link.download = `nextvideo-download.${extension}`;
+        link.download = makeDownloadFilename(videoTitle, extension);
         link.rel = 'noopener';
         document.body.appendChild(link);
         link.click();
@@ -180,7 +201,7 @@
       }
     };
 
-    const renderFormats = (container, formats, kind, videoUrl) => {
+    const renderFormats = (container, formats, kind, videoUrl, videoTitle) => {
       container.replaceChildren();
       if (!Array.isArray(formats) || formats.length === 0) {
         container.appendChild(makeEmptyMessage(
@@ -211,7 +232,7 @@
         button.type = 'button';
         button.className = 'nv-download-button';
         button.textContent = '↓ Download';
-        button.addEventListener('click', () => downloadFormat(videoUrl, format, kind, button));
+        button.addEventListener('click', () => downloadFormat(videoUrl, format, kind, videoTitle, button));
 
         row.append(badge, details, button);
         container.appendChild(row);
@@ -249,8 +270,9 @@
       const fallbackOnly = video?.fallbackOnly === true || options.length === 0;
       if (options.length === 0) options = [makeFallbackFormat()];
 
-      const videoCount = renderFormats(videoFormats, options, 'video', videoUrl);
-      const audioCount = renderFormats(audioFormats, video?.audioFormats, 'audio', videoUrl);
+      const downloadTitle = typeof video?.title === 'string' ? video.title : '';
+      const videoCount = renderFormats(videoFormats, options, 'video', videoUrl, downloadTitle);
+      const audioCount = renderFormats(audioFormats, video?.audioFormats, 'audio', videoUrl, downloadTitle);
       audioSection.hidden = audioCount === 0;
       result.hidden = false;
       syncMobileResultPlacement();
