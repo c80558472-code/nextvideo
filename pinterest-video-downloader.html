@@ -9,7 +9,7 @@
 <meta content="index,follow" name="robots"/>
 <link href="https://nextvideo.in/pinterest-video-downloader.html" rel="canonical"/>
 <meta content="Pinterest Video Downloader – NEXTVIDEO" property="og:title"/>
-<meta content="Process supported public X (Pinterest) videos online with NEXTVIDEO." property="og:description"/>
+<meta content="Process supported public Pinterest videos online with NEXTVIDEO." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://nextvideo.in/pinterest-video-downloader.html" property="og:url"/>
 <style>
@@ -74,6 +74,40 @@ a{text-decoration:none;color:inherit}
 .footer{background:#0d162a;color:#fff;padding:38px 0 19px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.footer h4{font-size:13px;margin-bottom:11px}.footer a{display:block;font-size:12px;color:#aeb8ca;margin-bottom:7px}.footer a:hover{color:#fff}.footer-desc{font-size:12px;color:#aeb8ca;max-width:290px;margin-top:10px}.copyright{border-top:1px solid rgba(255,255,255,.08);padding-top:17px;margin-top:25px;text-align:center;color:#7d899f;font-size:11px}
 @media(max-width:1000px){.nav{display:none}.hero-grid{grid-template-columns:1fr}.hero-content{text-align:left}.hero-art{margin-top:5px}.platform-grid{grid-template-columns:repeat(2,1fr)}.benefit-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.site-header{padding:0 3%}.actions{min-width:0}.brand{min-width:0}.hero{padding:45px 0}.hero h1{font-size:38px}.hero p{font-size:15px}.dl-form{flex-direction:column}.dl-form button{padding:14px;margin-top:6px}.platform-grid,.benefit-grid,.steps,.faq-grid,.footer-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr;gap:15px}.stat:not(:last-child)::after{display:none}.float-icon{transform:scale(.88)}.phone{width:215px;height:325px}.float-down{right:9%;}}
+
+/* Shared downloader result UI, matching the working homepage workflow. */
+/* Downloader result card: scoped so the approved homepage design stays intact. */
+.nv-status{font-size:13px;color:var(--muted);margin:12px 0 0;overflow-wrap:anywhere}
+.nv-status.nv-status-success{color:#16804a}
+.nv-status.nv-status-error{color:#b42318}
+.nv-status.nv-status-info{color:var(--muted)}
+#videoResult{width:100%;max-width:900px;margin:28px auto;padding:24px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 35px rgba(45,65,105,.10)}
+#videoResult[hidden],#videoResult [hidden],#audioSection[hidden]{display:none!important}
+#videoResult .nv-preview{display:flex;align-items:center;gap:20px;margin-bottom:24px}
+#videoResult .nv-thumbnail-wrap{width:160px;flex:0 0 160px}
+#videoResult .nv-thumbnail{display:block;width:100%;max-height:180px;object-fit:cover;border-radius:12px}
+#videoResult .nv-thumbnail-fallback{display:grid;place-items:center;min-height:100px;border-radius:12px;background:linear-gradient(135deg,#edf5ff,#eee7ff);color:#6247ed;font-size:32px}
+#videoResult .nv-video-meta{min-width:0;flex:1}
+#videoResult .nv-overline{font-size:11px;letter-spacing:1px;font-weight:800;color:#5a46ef;margin-bottom:6px}
+#videoResult .nv-video-meta h2{font-size:22px;line-height:1.3;overflow-wrap:anywhere;margin-bottom:6px}
+#videoResult .nv-duration,#videoResult .nv-note{font-size:13px;color:var(--muted);margin:0}
+#videoResult .nv-format-section{margin-top:22px}
+#videoResult .nv-section-heading{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+#videoResult .nv-section-heading h3,#videoResult .nv-format-section>h3{font-size:18px;margin:0 0 3px}
+#videoResult .nv-section-heading p{font-size:12px;color:var(--muted);margin:0}
+#videoResult .nv-section-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:11px;background:#e7edff;color:#355de4;font-weight:800}
+#videoResult .nv-audio-icon{background:#f0e7ff;color:#7546f2}
+#videoResult .nv-format-list{display:grid;gap:10px}
+#videoResult .nv-format-row{display:flex;align-items:center;gap:14px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fafbff}
+#videoResult .nv-file-badge{min-width:54px;text-align:center;padding:8px 9px;border-radius:8px;background:#e7edff;color:#355de4;font-size:11px;font-weight:800}
+#videoResult .nv-file-audio{background:#f0e7ff;color:#7546f2}
+#videoResult .nv-format-details{display:grid;gap:4px;flex:1;min-width:0}
+#videoResult .nv-format-details strong{font-size:14px;overflow-wrap:anywhere}
+#videoResult .nv-format-details small{font-size:12px;color:#718098}
+#videoResult .nv-download-button{flex:0 0 auto;padding:10px 15px;border:0;border-radius:9px;background:linear-gradient(135deg,#5546e8,#7d43ec);color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+#videoResult .nv-download-button:disabled{opacity:.6;cursor:wait}
+#videoResult .nv-empty{padding:14px;color:#68758d;background:#f7f8fd;border-radius:10px;font-size:13px}
+@media(max-width:650px){#videoResult{padding:15px;margin:20px auto}#videoResult .nv-preview{align-items:flex-start;gap:12px}#videoResult .nv-thumbnail-wrap{width:100px;flex-basis:100px}#videoResult .nv-format-row{gap:8px;padding:10px}#videoResult .nv-file-badge{min-width:44px;padding:7px 5px}#videoResult .nv-download-button{padding:9px;font-size:12px}}
 </style>
 <script type="application/ld+json">
 {
@@ -100,11 +134,11 @@ a{text-decoration:none;color:inherit}
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"How do I download an Pinterest video?","acceptedAnswer":{"@type":"Answer","text":"Copy the URL of a supported public Pinterest video, paste it into the NEXTVIDEO downloader, and select Download Video."}},
-    {"@type":"Question","name":"Can I use the X downloader on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page is designed for supported modern mobile and desktop browsers."}},
+    {"@type":"Question","name":"How do I download a Pinterest video?","acceptedAnswer":{"@type":"Answer","text":"Copy the URL of a supported public Pinterest video, paste it into the NEXTVIDEO downloader, and select Download Video."}},
+    {"@type":"Question","name":"Can I use the Pinterest downloader on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page is designed for supported modern mobile and desktop browsers."}},
     {"@type":"Question","name":"Do I need to install an app?","acceptedAnswer":{"@type":"Answer","text":"No separate downloader app is required for the web workflow. Use a supported modern browser."}},
     {"@type":"Question","name":"Can I download private or restricted Pinterest videos?","acceptedAnswer":{"@type":"Answer","text":"No. Private, restricted, DRM-protected or otherwise inaccessible content is not supported."}},
-    {"@type":"Question","name":"Is NEXTVIDEO affiliated with X?","acceptedAnswer":{"@type":"Answer","text":"No. NEXTVIDEO is an independent service and is not affiliated with, endorsed by, or sponsored by X."}}
+    {"@type":"Question","name":"Is NEXTVIDEO affiliated with Pinterest?","acceptedAnswer":{"@type":"Answer","text":"No. NEXTVIDEO is an independent service and is not affiliated with, endorsed by, or sponsored by Pinterest."}}
   ]
 }
 </script>
@@ -130,14 +164,14 @@ a{text-decoration:none;color:inherit}
 <section class="hero">
 <div class="container hero-grid">
 <div class="hero-content">
-<div class="kicker">X • VIDEO • DOWNLOADER</div>
+<div class="kicker">PINTEREST • VIDEO • DOWNLOADER</div>
 <h1>Pinterest Video Downloader<br/><span>Save Pinterest Videos</span></h1>
 <p>NEXTVIDEO is a simple online tool for processing supported public Pinterest videos. Copy the link, paste it below and start processing.</p>
-<form class="dl-form" id="xDownloadForm">
-<input aria-label="Pinterest video URL" autocomplete="off" id="xUrl" name="url" placeholder="Paste Pinterest video URL here..." required="" type="url"/>
-<button id="downloadBtn" type="submit">⇩ Download Video</button>
+<form class="dl-form" id="downloadForm" data-platform="pinterest">
+<input aria-label="Pinterest video URL" autocomplete="off" id="videoUrl" name="url" placeholder="Paste Pinterest video URL here..." required="" type="url"/>
+<button id="inspectButton" type="submit">⇩ Download Video</button>
 </form>
-<div aria-live="polite" class="result" id="result" role="status"></div>
+<p id="status" class="nv-status" role="status" aria-live="polite"></p>
 <div class="note">🔒 <b>No registration required.</b> Use only content you own or have permission to download.</div>
 </div>
 <div aria-hidden="true" class="hero-art">
@@ -151,7 +185,7 @@ a{text-decoration:none;color:inherit}
 <div class="phone-notch"></div>
 <div class="phone-screen">
 <div class="circle-play">▶</div>
-<strong>X Video</strong>
+<strong>Pinterest Video</strong>
 <div class="circle-dl">⇩</div>
 <div class="phone-sub">Simple browser workflow</div>
 </div>
@@ -159,9 +193,31 @@ a{text-decoration:none;color:inherit}
 </div>
 </div>
 </section>
+<section class="container" aria-label="Pinterest video download results">
+  <section id="videoResult" hidden>
+    <div class="nv-preview">
+      <div class="nv-thumbnail-wrap">
+        <img id="videoThumbnail" class="nv-thumbnail" alt="Pinterest video thumbnail" hidden>
+        <div id="thumbnailFallback" class="nv-thumbnail-fallback">▶</div>
+      </div>
+      <div class="nv-video-meta">
+        <h2 id="videoTitle">Video details</h2>
+        <p id="videoDuration" class="nv-duration"></p>
+      </div>
+    </div>
+    <section class="nv-format-section">
+      <h3>Video Download Options</h3>
+      <div id="videoFormats" class="nv-format-list"></div>
+    </section>
+    <section id="audioSection" class="nv-format-section">
+      <h3>Audio Download Options</h3>
+      <div id="audioFormats" class="nv-format-list"></div>
+    </section>
+  </section>
+</section>
 <section class="section">
 <div class="container">
-<div class="center"><h2>X Downloader Features</h2><p class="sub">Built around the same clean NEXTVIDEO experience.</p></div>
+<div class="center"><h2>Pinterest Downloader Features</h2><p class="sub">Built around the same clean NEXTVIDEO experience.</p></div>
 <div class="platform-grid">
 <div class="platform"><div class="picon p-inst">◎</div><h3>Pinterest Videos</h3><p>Process supported public video URLs.</p><span class="arrow">›</span></div>
 <div class="platform"><div class="picon p-reel">▶</div><h3>Pinterest Videos</h3><p>Process supported public Pinterest video URLs.</p><span class="arrow">›</span></div>
@@ -187,22 +243,22 @@ a{text-decoration:none;color:inherit}
 <section class="section">
 <div class="container content">
 <div class="center"><h2>Pinterest Video Downloader</h2><p class="sub">A focused guide for processing supported public Pinterest video URLs with NEXTVIDEO.</p></div>
-<h3>What is an Pinterest Video Downloader?</h3>
-<p>NEXTVIDEO provides an online Pinterest video downloader for supported publicly accessible X URLs. The page is designed to keep the process straightforward: copy a link from X, paste it into the tool and submit it for processing.</p>
-<h3>How to Download an X (Pinterest) Video</h3>
+<h3>What is a Pinterest Video Downloader?</h3>
+<p>NEXTVIDEO provides an online Pinterest video downloader for supported publicly accessible Pinterest URLs. The page is designed to keep the process straightforward: copy a link from Pinterest, paste it into the tool and submit it for processing.</p>
+<h3>How to Download a Pinterest Video</h3>
 <p>You can follow this simple workflow on a phone, tablet or computer:</p>
 <ul>
-<li>Open X and copy the URL of the supported public video.</li>
-<li>Paste the X link into the NEXTVIDEO input box above.</li>
+<li>Open Pinterest and copy the URL of the supported public video.</li>
+<li>Paste the Pinterest link into the NEXTVIDEO input box above.</li>
 <li>Select Download Video and wait for processing to complete.</li>
 </ul>
 <h3>Download Pinterest videos Online</h3>
 <p>Pinterest videos are commonly shared through direct links. A supported public Pinterest video URL can be submitted through the same copy-and-paste workflow.</p>
-<h3>X Video Downloader for Android, iPhone and PC</h3>
+<h3>Pinterest Video Downloader for Android, iPhone and PC</h3>
 <p>The interface is responsive so the same basic workflow can be used from mobile or desktop browsers. On a phone, copy the Pinterest video link and paste it into your browser. On a computer, copy the Pinterest video URL and paste it directly into the downloader.</p>
-<h3>What X Content is Supported?</h3>
-<p>Availability depends on how X serves the requested media. NEXTVIDEO is intended for supported public or authorized content. Private accounts, restricted URLs, DRM-protected material and otherwise inaccessible media are not supported.</p>
-<div class="legal"><b>Important:</b> Only download or process media when you have the necessary rights, permission, licence or other legal authorization. NEXTVIDEO does not encourage copyright infringement, unauthorized redistribution, or circumvention of DRM, access controls or private-content restrictions. X is an independent third-party service; NEXTVIDEO is not affiliated with, endorsed by, or sponsored by X.</div>
+<h3>What Pinterest Content is Supported?</h3>
+<p>Availability depends on how Pinterest serves the requested media. NEXTVIDEO is intended for supported public or authorized content. Private accounts, restricted URLs, DRM-protected material and otherwise inaccessible media are not supported.</p>
+<div class="legal"><b>Important:</b> Only download or process media when you have the necessary rights, permission, licence or other legal authorization. NEXTVIDEO does not encourage copyright infringement, unauthorized redistribution, or circumvention of DRM, access controls or private-content restrictions. Pinterest is an independent third-party service; NEXTVIDEO is not affiliated with, endorsed by, or sponsored by Pinterest.</div>
 </div>
 </section>
 <section class="section how"><div class="container">
@@ -218,11 +274,11 @@ a{text-decoration:none;color:inherit}
 <div class="faq-wrap">
 <h2 style="font-size:24px;margin:0 0 12px">Frequently Asked Questions</h2>
 <div class="faq-grid">
-<details class="faq"><summary>How do I download an Pinterest video?</summary><p>Copy the URL of a supported public Pinterest video, paste it into the downloader above, and select Download Video.</p></details>
+<details class="faq"><summary>How do I download a Pinterest video?</summary><p>Copy the URL of a supported public Pinterest video, paste it into the downloader above, and select Download Video.</p></details>
 <details class="faq"><summary>Can I download Pinterest videos?</summary><p>NEXTVIDEO is designed to process supported publicly accessible Pinterest video URLs, for supported public videos.</p></details>
 <details class="faq"><summary>Do I need to install an app?</summary><p>No separate downloader app is required for the web workflow. Use a supported modern browser on mobile or desktop.</p></details>
 <details class="faq"><summary>Can I download private Pinterest videos?</summary><p>No. Private, restricted, DRM-protected or otherwise inaccessible content is not supported.</p></details>
-<details class="faq"><summary>Is NEXTVIDEO affiliated with X?</summary><p>No. NEXTVIDEO is an independent service and is not affiliated with, endorsed by, or sponsored by X.</p></details>
+<details class="faq"><summary>Is NEXTVIDEO affiliated with Pinterest?</summary><p>No. NEXTVIDEO is an independent service and is not affiliated with, endorsed by, or sponsored by Pinterest.</p></details>
 <details class="faq"><summary>Why might a download fail?</summary><p>A download can fail when a URL is unavailable, restricted, unsupported or cannot be processed by the service at that time.</p></details>
 </div>
 </div>
@@ -240,47 +296,42 @@ a{text-decoration:none;color:inherit}
 <div class="copyright">© 2026 NEXTVIDEO. All rights reserved.</div>
 </div></footer>
 <script>
-const form=document.getElementById('xDownloadForm');
-const input=document.getElementById('xUrl');
-const button=document.getElementById('downloadBtn');
-const result=document.getElementById('result');
-const BACKEND_URL='https://violet-rook-563536.hostingersite.com/api/download';
+// Validate Pinterest URLs and normalize shared /sent/ links before the shared downloader runs.
+(() => {
+  const form = document.getElementById('downloadForm');
+  const input = document.getElementById('videoUrl');
+  const status = document.getElementById('status');
+  if (!form || !input || !status) return;
 
-function showResult(message){result.style.display='block';result.textContent=message;}
-function isXUrl(value){
-  try{
-    const u=new URL(value);
-    const h=u.hostname.toLowerCase();
-    return u.protocol==='https:' && (h==='pinterest.com'||h==='www.pinterest.com'||h==='pinterest.com'||h==='www.pinterest.com'||h==='mobile.pinterest.com'||h.endsWith('.pinterest.com')||h.endsWith('.pinterest.com'));
-  }catch(e){return false;}
-}
-
-form.addEventListener('submit',async(e)=>{
-  e.preventDefault();
-  const url=input.value.trim();
-  if(!isXUrl(url)){showResult('Please enter a valid X URL.');return;}
-  button.disabled=true;button.textContent='Processing...';result.style.display='none';
-  try{
-    const response=await fetch(BACKEND_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url})});
-    if(!response.ok){
-      let msg='The download could not be completed.';
-      try{const data=await response.json();if(data?.error)msg=data.error;}catch(_){ }
-      throw new Error(msg);
+  form.addEventListener('submit', (event) => {
+    let parsed = null;
+    let host = '';
+    let valid = false;
+    try {
+      parsed = new URL(input.value.trim());
+      host = parsed.hostname.toLowerCase();
+      valid = parsed.protocol === 'https:' && (
+        host === 'pinterest.com' || host.endsWith('.pinterest.com') || host === 'pin.it'
+      );
+    } catch (_) {
+      valid = false;
     }
-    const blob=await response.blob();
-    if(!blob.size)throw new Error('No downloadable file was returned.');
-    const objectUrl=URL.createObjectURL(blob);
-    const link=document.createElement('a');
-    link.href=objectUrl;link.download='pinterest-video.mp4';
-    document.body.appendChild(link);link.click();link.remove();
-    URL.revokeObjectURL(objectUrl);
-    showResult('Download started successfully.');
-  }catch(error){
-    showResult(error?.message||'Something went wrong. Please try another supported public X URL.');
-  }finally{
-    button.disabled=false;button.textContent='⇩ Download Video';
-  }
-});
+    if (!valid) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      status.textContent = 'Please enter a valid public Pinterest video URL.';
+      status.className = 'nv-status nv-status-error';
+      return;
+    }
+
+    // Pinterest share links can append /sent/ and tracking parameters. Send the canonical pin URL instead.
+    if (parsed && (host === 'pinterest.com' || host.endsWith('.pinterest.com'))) {
+      const pinMatch = parsed.pathname.match(/^\/pin\/(\d+)(?:\/sent)?\/?$/i);
+      if (pinMatch) input.value = `${parsed.origin}/pin/${pinMatch[1]}/`;
+    }
+  }, true);
+})();
 </script>
+<script src="script.js?v=20261020" defer></script>
 </body>
 </html>

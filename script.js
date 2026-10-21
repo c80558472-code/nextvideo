@@ -196,6 +196,7 @@
             formatKind: kind,
             formatHeight: kind === 'video' ? format.height : undefined,
             formatBitrate: kind === 'audio' ? format.bitrate : undefined,
+            videoTitle,
             fallback: format.fallback === true
           })
         });
