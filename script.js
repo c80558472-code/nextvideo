@@ -44,6 +44,87 @@
     const audioFormats = document.getElementById('audioFormats');
     const audioSection = document.getElementById('audioSection');
 
+    // Add a small clear (×) control inside the shared URL field on the homepage
+    // and every downloader page without changing each page's HTML layout.
+    const urlClearStyle = document.createElement('style');
+    urlClearStyle.id = 'nv-url-clear-styles';
+    urlClearStyle.textContent = `
+      .nv-url-input-wrap {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        flex: 1 1 0%;
+        min-width: 0;
+      }
+      .nv-url-input-wrap > input {
+        width: 100%;
+        min-width: 0;
+        padding-right: 48px !important;
+      }
+      .nv-url-input-wrap .nv-url-clear {
+        position: absolute !important;
+        z-index: 2;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        display: inline-grid !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        place-items: center;
+        width: 28px;
+        min-width: 28px;
+        height: 28px;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 50% !important;
+        background: #edf1f7 !important;
+        color: #68758a !important;
+        box-shadow: none !important;
+        font: 22px/1 Arial, sans-serif !important;
+        cursor: pointer;
+      }
+      .nv-url-input-wrap .nv-url-clear:hover {
+        background: #dfe6f1 !important;
+        color: #24324b !important;
+      }
+      .nv-url-input-wrap .nv-url-clear:focus-visible {
+        outline: 2px solid #6551e8;
+        outline-offset: 2px;
+      }
+      @media (max-width: 650px) {
+        .nv-url-input-wrap { width: 100%; flex: 0 0 auto; }
+      }
+    `;
+    document.head.appendChild(urlClearStyle);
+
+    const urlInputWrap = document.createElement('div');
+    urlInputWrap.className = 'nv-url-input-wrap';
+    input.parentNode.insertBefore(urlInputWrap, input);
+    urlInputWrap.appendChild(input);
+
+    const clearUrlButton = document.createElement('button');
+    clearUrlButton.type = 'button';
+    clearUrlButton.className = 'nv-url-clear';
+    clearUrlButton.textContent = '×';
+    clearUrlButton.setAttribute('aria-label', 'Clear URL');
+    clearUrlButton.title = 'Clear URL';
+    urlInputWrap.appendChild(clearUrlButton);
+
+    // Keep the clear control visible so it is always discoverable. It can be
+    // clicked whenever the field contains a URL, without relying on input events
+    // or browser autofill state to reveal it.
+    clearUrlButton.addEventListener('click', () => {
+      input.value = '';
+      input.focus();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      if (result) result.hidden = true;
+      if (status) {
+        status.textContent = '';
+        status.className = 'nv-status';
+      }
+    });
+
     const setStatus = (message, type = 'info') => {
       status.textContent = message;
       status.className = `nv-status nv-status-${type}`;
@@ -196,7 +277,6 @@
             formatKind: kind,
             formatHeight: kind === 'video' ? format.height : undefined,
             formatBitrate: kind === 'audio' ? format.bitrate : undefined,
-            videoTitle,
             fallback: format.fallback === true
           })
         });
